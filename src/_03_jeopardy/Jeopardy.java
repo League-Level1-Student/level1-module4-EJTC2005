@@ -35,6 +35,7 @@ public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
 	private JButton thirdButton, fourthButton;
+	private JButton fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -53,32 +54,44 @@ public class Jeopardy implements ActionListener {
 frame.setVisible(true);
 		// 2. Give your frame a title
 frame.setTitle("frame");
-		// 3. Create a JPanel variable to hold the header using the createHeader method
-JPanel panel = createHeader("Math");
+		// 3.  a JPanel variable to hold the header using the Header method
+JPanel panel = Header("Math");
 
 		// 4. Add the header component to the quizPanel
 quizPanel.add(panel);
 		// 5. Add the quizPanel to the frame
 frame.add(quizPanel);
-		// 6. Use the createButton method to set the value of firstButton
-firstButton = createButton("5");
+		// 6. Use the Button method to set the value of firstButton
+firstButton = Button("200");
+secondButton = Button("400");	
+thirdButton = Button("600");
+fourthButton = Button("800");
+fifthButton = Button("1000");
 		// 7. Add the firstButton to the quizPanel
 quizPanel.add(firstButton);
-		// 8. Write the code to complete the createButton() method below. Check that your
+		// 8. Write the code to complete the Button() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
 
-		// 9. Use the secondButton variable to hold a button using the createButton
+		// 9. Use the secondButton variable to hold a button using the Button
 		// method
-secondButton = createButton("10");
+
 		// 10. Add the secondButton to the quizPanel
 quizPanel.add(secondButton);
+quizPanel.add(thirdButton);
+quizPanel.add(fourthButton);
+quizPanel.add(fifthButton);
+
 		// 11. Add action listeners to the buttons (2 lines of code)
+
 firstButton.addActionListener(this);
 secondButton.addActionListener(this);
+thirdButton.addActionListener(this);
+fourthButton.addActionListener(this);
+fifthButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
 
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
-		
+
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
 		 * question
@@ -92,9 +105,9 @@ secondButton.addActionListener(this);
 	}
 
 
-	private JButton createButton(String dollarAmount) {
+	private JButton Button(String dollarAmount) {
 		
-		// Create a new JButton
+		//  a new JButton
 JButton button = new JButton();
 		// Set the text of the button to the dollarAmount
 button.setText(dollarAmount);
@@ -114,14 +127,23 @@ buttonCount+=1;
 		// If the buttonPressed was the firstButton
 if(buttonPressed==firstButton) {
 			// Call the askQuestion() method
-askQuestion("","", 5);
+askQuestion("What is 2+2.","4", 200);
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
 }
 		// If the buttonPressed was the secondButton
 if(buttonPressed==secondButton) {
 			// Call the askQuestion() method with a harder question
-askQuestion("","", 10);
+askQuestion("What is 3*3","9", 400);
+}
+if(buttonPressed==thirdButton) {
+	askQuestion("What is 5^2.","25", 600);
+}
+if(buttonPressed==fourthButton) {
+	askQuestion("What is x? 3x+5=20.","x=5", 800);
+}
+if(buttonPressed==fifthButton) {
+	askQuestion("What is 3/4-5/6.","-1/12", 1000);
 }
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
@@ -177,7 +199,7 @@ updateScore();
 		scoreBox.setText("" + score);
 	}
 
-	private JPanel createHeader(String topicName) {
+	private JPanel Header(String topicName) {
 		JPanel panelj = new JPanel();
 		panelj.setLayout(new BoxLayout(panelj, BoxLayout.PAGE_AXIS));
 		JLabel l1 = new JLabel(topicName);
